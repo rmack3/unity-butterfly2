@@ -38,6 +38,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _Cutoff: 0.5
+    - _DstBlend: 0
     - _Mode: 0
+    - _SrcBlend: 1
+    - _ZWrite: 1
     m_Colors: []
   m_BuildTextureStacks: []
