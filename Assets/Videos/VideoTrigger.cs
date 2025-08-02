@@ -7,18 +7,16 @@ using UnityEngine;
 
 public class VideoTrigger : MonoBehaviour
 {
-    public Canvas videoCanvascat;
-    public UnityEngine.Video.VideoPlayer videoPlayercat;
+    public Canvas videoCanvas;
+    public UnityEngine.Video.VideoPlayer videoPlayer;
 
-    public UnityEngine.AudioSource audioPlayercat;
 
 
     private void Start()
     {
-        if (videoPlayercat != null)
+        if (videoPlayer != null)
         {
-            videoPlayercat.Stop(); // Ensure video is reset
-            audioPlayercat.Stop();
+            videoPlayer.Stop(); // Ensure video is reset
         }
     }
 
@@ -26,12 +24,11 @@ public class VideoTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            videoCanvascat.enabled = true;
+            videoCanvas.enabled = true;
 
-            if (videoPlayercat != null)
+            if (videoPlayer != null)
             {
-                videoPlayercat.Play();
-                audioPlayercat.Play();
+                videoPlayer.Play();
 
             }
         }
@@ -41,14 +38,12 @@ public class VideoTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            videoCanvascat.enabled = false;
+            videoCanvas.enabled = false;
 
-            if (videoPlayercat != null)
+            if (videoPlayer != null)
             {
-                videoPlayercat.Stop(); // Optional: or use .Pause() if you want to resume late
-                audioPlayercat.Stop();
-                videoPlayercat.time = 0; // Reset to start
-                audioPlayercat.time = 0;
+                videoPlayer.Stop(); // Optional: or use .Pause() if you want to resume late
+                videoPlayer.time = 0; // Reset to start
 
             }
         }
