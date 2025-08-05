@@ -1,39 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-
-
 
 public class VideoTriggerEgg : MonoBehaviour
 {
     public Canvas videoCanvasegg;
     public UnityEngine.Video.VideoPlayer videoPlayeregg;
-
     public UnityEngine.AudioSource audioPlayeregg;
-
 
     private void Start()
     {
+        if (videoCanvasegg != null)
+            videoCanvasegg.enabled = false;
+
         if (videoPlayeregg != null)
-        {
-            videoPlayeregg.Stop(); // Ensure video is reset
+            videoPlayeregg.Stop();
+
+        if (audioPlayeregg != null)
             audioPlayeregg.Stop();
-        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            videoCanvasegg.enabled = true;
+            if (videoCanvasegg != null)
+                videoCanvasegg.enabled = true;
 
             if (videoPlayeregg != null)
-            {
                 videoPlayeregg.Play();
-                audioPlayeregg.Play();
 
-            }
+            if (audioPlayeregg != null)
+                audioPlayeregg.Play();
         }
     }
 
@@ -41,15 +37,19 @@ public class VideoTriggerEgg : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            videoCanvasegg.enabled = false;
+            if (videoCanvasegg != null)
+                videoCanvasegg.enabled = false;
 
             if (videoPlayeregg != null)
             {
-                videoPlayeregg.Stop(); // Optional: or use .Pause() if you want to resume late
-                audioPlayeregg.Stop();
-                videoPlayeregg.time = 0; // Reset to start
-                audioPlayeregg.time = 0;
+                videoPlayeregg.Stop();
+                videoPlayeregg.time = 0;
+            }
 
+            if (audioPlayeregg != null)
+            {
+                audioPlayeregg.Stop();
+                audioPlayeregg.time = 0;
             }
         }
     }
